@@ -25,13 +25,13 @@ pipeline {
             echo 'Test stage'
             sh '''
               ls -la
-              cd build
               ls -la
-              if [-f "index.html"]; then
+              if [-f "build/index.html"]; then
                 echo "File exists"
               else
                 echo "File doesn not exist"
               fi
+              npm run test
             '''
           }
         }
