@@ -26,6 +26,7 @@ pipeline {
             sh '''
               ls -la
               cd build
+              ls -la
               if [-f "index.html"]; then
                 echo "File exists"
               else
