@@ -26,7 +26,7 @@ pipeline {
             sh '''
               ls -la
               ls -la
-              if [-f build/index.html]; then
+              if [ -f "build/index.html" ]; then
                 echo "File exists"
               else
                 echo "File doesn not exist"
