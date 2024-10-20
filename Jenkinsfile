@@ -28,6 +28,7 @@ pipeline {
                 echo "File exists"
               else
                 echo "File doesn not exist"
+              fi
             '''
           }
         }
