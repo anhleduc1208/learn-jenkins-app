@@ -17,13 +17,13 @@ pipeline {
             npm --version
             echo $PATH
             echo $HOME
+            ls -la ~
 
             apk update
             apk add curl bash
 
             curl -fsSL https://bun.sh/install | bash
-            echo $PATH
-            echo $HOME
+            ls -la ~
 
             bun --version
           '''
