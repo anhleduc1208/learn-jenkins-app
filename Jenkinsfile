@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-      MY_FIRST_ENV: "haha"
+      MY_FIRST_ENV = "haha"
     }
   stages {
 
