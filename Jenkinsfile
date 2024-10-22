@@ -7,7 +7,7 @@ pipeline {
           docker {
             image 'oven/bun:latest'
             args '-u root'
-            privileged true
+            // privileged true
             // reuseNode true
           }
         }
