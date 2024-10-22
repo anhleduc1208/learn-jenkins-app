@@ -1,8 +1,13 @@
 pipeline {
     agent any
+    parameters {
+      string ( name: 'BuildConfiguration', 
+          defaultValue: 'Release', 
+          description: 'Configuration to build (Debug/Release/...)')
+    }
     environment {
       MY_FIRST_ENV = "haha"
-      MY_SECOND_ENV = params.testParams
+      MY_SECOND_ENV = params.BuildConfiguration
     }
   stages {
 
