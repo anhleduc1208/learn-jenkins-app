@@ -7,7 +7,7 @@ pipeline {
           docker {
             image 'node:20-alpine'
             args '-u root'
-            reuseNode true
+            // reuseNode true
           }
         }
         steps {
