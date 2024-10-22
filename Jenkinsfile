@@ -5,7 +5,7 @@ pipeline {
       stage('Install bun') {
         agent {
           docker {
-            image 'oven/bun:latest'
+            image 'imbios/bun-node:1.1.32-20.3.0'
             args '-u root'
             // privileged true
             // reuseNode true
