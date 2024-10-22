@@ -15,8 +15,8 @@ pipeline {
             node --version
             npm --version
 
-            apk update
-            apk add curl bash
+            sudo apk update
+            sudo apk add curl bash
 
             curl -fsSL https://bun.sh/install | bash
             bun --version
