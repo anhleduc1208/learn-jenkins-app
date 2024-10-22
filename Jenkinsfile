@@ -6,6 +6,7 @@ pipeline {
         agent {
           docker {
             image 'node:20-alpine'
+            args '-u root'
             reuseNode true
           }
         }
@@ -15,8 +16,8 @@ pipeline {
             node --version
             npm --version
 
-            sudo apk update
-            sudo apk add curl bash
+            apk update
+            apk add curl bash
 
             curl -fsSL https://bun.sh/install | bash
             bun --version
