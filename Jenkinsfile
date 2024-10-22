@@ -1,71 +1,43 @@
 pipeline {
     agent any
-    stages {
+    environment {
+      MY_FIRST_ENV: "haha"
+    }
+  stages {
 
-      stage('Install bun') {
-        agent {
-          docker {
-            image 'imbios/bun-node:1.1.32-20.18.0-slim'
-            args '-u root'
-            // privileged true
-            // reuseNode true
-          }
-        }
-        steps {
-          sh '''
-            ls -la
-            bun --version
-            node --version
-            npm --version
-            #ls -la ~
-
-            #apk update
-            #apk add curl bash
-
-            #curl -fsSL https://bun.sh/install | bash
-
-            #export BUN_INSTALL=~/.bun
-            #export PATH=$BUN_INSTALL/bin:$PATH
-            #echo "export BUN_INSTALL=~/.bun" >> ~/.bashrc
-            #echo "export PATH=$BUN_INSTALL/bin:$PATH" >> ~/.bashrc
-            #bun --version
-          '''
-          sh '''
-            bun --version
-          '''
-        }
-        }
-      }
-
-      // stage('Run bun') {
+      // stage('Install bun') {
       //   agent {
       //     docker {
-      //       image 'node:20-alpine'
+      //       image 'imbios/bun-node:1.1.32-20.18.0-slim'
       //       args '-u root'
-      //       reuseNode true
+      //       // privileged true
+      //       // reuseNode true
       //     }
       //   }
       //   steps {
       //     sh '''
       //       ls -la
+      //       bun --version
       //       node --version
       //       npm --version
-      //       echo $PATH
-      //       echo $HOME
-      //       ls -la ~
+      //       #ls -la ~
 
-      //       apk update
-      //       apk add curl bash
+      //       #apk update
+      //       #apk add curl bash
 
-      //       curl -fsSL https://bun.sh/install | bash
-      //       ls -la ~/.bun/bin/bun
+      //       #curl -fsSL https://bun.sh/install | bash
 
-      //       ~/.bun/bin/bun --version
+      //       #export BUN_INSTALL=~/.bun
+      //       #export PATH=$BUN_INSTALL/bin:$PATH
+      //       #echo "export BUN_INSTALL=~/.bun" >> ~/.bashrc
+      //       #echo "export PATH=$BUN_INSTALL/bin:$PATH" >> ~/.bashrc
+      //       #bun --version
+      //     '''
+      //     sh '''
+      //       bun --version
       //     '''
       //   }
-      //   }
       // }
-
 
       // stage('Build') {
       //   agent {
@@ -126,12 +98,30 @@ pipeline {
       //     '''
       //   }
       // }
+    stage('Test env') {
+      sh '''
+        echo $MY_FIRST_ENV
+      '''
+    }
 
-      
-  //   }
-  // post {
-  //   always {
-  //     junit 'jest-results/junit.xml'
-  //   }
-  // }
+    stage('Test env in docker') {
+      agent {
+        docker {
+          image 'imbios/bun-node:1.1.32-20.18.0-slim'
+          // args '-u root'
+          // privileged true
+          // reuseNode true
+        }
+      }
+      sh '''
+        echo $MY_FIRST_ENV
+      '''
+    }
+
+    post {
+      always {
+        junit 'jest-results/junit.xml'
+      }
+    }
+  }
 }
