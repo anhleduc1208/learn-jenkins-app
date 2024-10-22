@@ -5,7 +5,7 @@ pipeline {
       stage('Install bun') {
         agent {
           docker {
-            image 'node:20-alpine'
+            image 'oven/bun:latest'
             args '-u root'
             privileged true
             // reuseNode true
@@ -14,28 +14,23 @@ pipeline {
         steps {
           sh '''
             ls -la
+            bun --version
             node --version
             npm --version
-            echo $PATH
-            echo $HOME
-            ls -la ~
+            #ls -la ~
 
-            apk update
-            apk add curl bash
+            #apk update
+            #apk add curl bash
 
-            curl -fsSL https://bun.sh/install | bash
+            #curl -fsSL https://bun.sh/install | bash
 
-            export BUN_INSTALL=~/.bun
-            export PATH=$BUN_INSTALL/bin:$PATH
-            echo "export BUN_INSTALL=~/.bun" >> ~/.bashrc
-            echo "export PATH=$BUN_INSTALL/bin:$PATH" >> ~/.bashrc
+            #export BUN_INSTALL=~/.bun
+            #export PATH=$BUN_INSTALL/bin:$PATH
+            #echo "export BUN_INSTALL=~/.bun" >> ~/.bashrc
+            #echo "export PATH=$BUN_INSTALL/bin:$PATH" >> ~/.bashrc
             #bun --version
           '''
           sh '''
-            export BUN_INSTALL=~/.bun
-            export PATH=$BUN_INSTALL/bin:$PATH
-            echo $BUN_INSTALL
-            echo $PATH
             bun --version
           '''
         }
