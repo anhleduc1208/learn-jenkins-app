@@ -28,7 +28,7 @@ pipeline {
             export PATH=$BUN_INSTALL/bin:$PATH
             echo "export BUN_INSTALL=~/.bun" >> ~/.bashrc
             echo "export PATH=$BUN_INSTALL/bin:$PATH" >> ~/.bashrc
-            bun --version
+            #bun --version
           '''
           sh '''
             export BUN_INSTALL=~/.bun
