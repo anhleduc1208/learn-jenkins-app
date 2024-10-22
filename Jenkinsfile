@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
       MY_FIRST_ENV = "haha"
+      MY_SECOND_ENV = {testParams}
     }
   stages {
 
@@ -99,9 +100,12 @@ pipeline {
       //   }
       // }
     stage('Test env') {
-      sh '''
-        echo $MY_FIRST_ENV
-      '''
+      steps{
+        sh '''
+          echo $MY_FIRST_ENV
+          echo $MY_SECOND_ENV
+        '''
+      }
     }
 
     stage('Test env in docker') {
@@ -113,9 +117,12 @@ pipeline {
           // reuseNode true
         }
       }
-      sh '''
-        echo $MY_FIRST_ENV
-      '''
+      steps{
+        sh '''
+          echo $MY_FIRST_ENV
+          echo $MY_SECOND_ENV
+        '''
+      }
     }
 
     post {
