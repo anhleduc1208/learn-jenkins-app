@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
       MY_FIRST_ENV = "haha"
-      MY_SECOND_ENV = {testParams}
+      MY_SECOND_ENV = params.testParams
     }
   stages {
 
