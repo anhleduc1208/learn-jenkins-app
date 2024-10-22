@@ -7,7 +7,7 @@ pipeline {
     }
     environment {
       MY_FIRST_ENV = "haha"
-      MY_SECOND_ENV = params.BuildConfiguration
+      MY_SECOND_ENV = "${params.BuildConfiguration}"
     }
   stages {
 
