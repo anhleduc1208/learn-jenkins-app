@@ -5,7 +5,7 @@ pipeline {
       stage('Install bun') {
         agent {
           docker {
-            image 'imbios/bun-node:1.1.32-20.3.0'
+            image 'imbios/bun-node:1.1.32-20.18.0-slim'
             args '-u root'
             // privileged true
             // reuseNode true
