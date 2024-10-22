@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
 
-      stage('Test bun') {
+      stage('Install bun') {
         agent {
           docker {
             image 'node:20-alpine'
@@ -23,13 +23,50 @@ pipeline {
             apk add curl bash
 
             curl -fsSL https://bun.sh/install | bash
-            ls -la ~/.bun/bin/bun
 
-            ~/.bun/bin/bun --version
+            export BUN_INSTALL=~/.bun
+            export PATH=$BUN_INSTALL/bin:$PATH
+            echo "export BUN_INSTALL=~/.bun" >> ~/.bashrc
+            echo "export PATH=$BUN_INSTALL/bin:$PATH" >> ~/.bashrc
+            bun --version
+          '''
+          sh '''
+            export BUN_INSTALL=~/.bun
+            export PATH=$BUN_INSTALL/bin:$PATH
+            bun --version
           '''
         }
         }
       }
+
+      // stage('Run bun') {
+      //   agent {
+      //     docker {
+      //       image 'node:20-alpine'
+      //       args '-u root'
+      //       reuseNode true
+      //     }
+      //   }
+      //   steps {
+      //     sh '''
+      //       ls -la
+      //       node --version
+      //       npm --version
+      //       echo $PATH
+      //       echo $HOME
+      //       ls -la ~
+
+      //       apk update
+      //       apk add curl bash
+
+      //       curl -fsSL https://bun.sh/install | bash
+      //       ls -la ~/.bun/bin/bun
+
+      //       ~/.bun/bin/bun --version
+      //     '''
+      //   }
+      //   }
+      // }
 
 
       // stage('Build') {
