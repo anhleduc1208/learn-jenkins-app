@@ -23,9 +23,9 @@ pipeline {
             apk add curl bash
 
             curl -fsSL https://bun.sh/install | bash
-            ls -la ~
+            ls -la ~/.bun/bin
 
-            bun --version
+            ~/.bun/bin/bun --version
           '''
         }
         }
