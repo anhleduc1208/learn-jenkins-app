@@ -33,6 +33,8 @@ pipeline {
           sh '''
             export BUN_INSTALL=~/.bun
             export PATH=$BUN_INSTALL/bin:$PATH
+            echo $BUN_INSTALL
+            echo $PAT
             bun --version
           '''
         }
