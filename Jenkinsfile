@@ -7,6 +7,7 @@ pipeline {
           docker {
             image 'node:20-alpine'
             args '-u root'
+            privileged true
             // reuseNode true
           }
         }
@@ -34,7 +35,7 @@ pipeline {
             export BUN_INSTALL=~/.bun
             export PATH=$BUN_INSTALL/bin:$PATH
             echo $BUN_INSTALL
-            echo $PAT
+            echo $PATH
             bun --version
           '''
         }
