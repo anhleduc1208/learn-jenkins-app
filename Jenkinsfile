@@ -8,16 +8,17 @@ pipeline {
             image 'node:20-alpine'
             reuseNode true
           }
-          steps {
-            sh '''
-              ls -la
-              node --version
-              npm --version
+        }
+        steps {
+          sh '''
+            ls -la
+            node --version
+            npm --version
 
-              curl -fsSL https://bun.sh/install | bash
-              bun --version
-            '''
-          }
+            curl -fsSL https://bun.sh/install | bash
+            bun --version
+          '''
+        }
         }
       }
 
@@ -83,10 +84,10 @@ pipeline {
       // }
 
       
-    }
-  post {
-    always {
-      junit 'jest-results/junit.xml'
-    }
-  }
+  //   }
+  // post {
+  //   always {
+  //     junit 'jest-results/junit.xml'
+  //   }
+  // }
 }
