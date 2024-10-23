@@ -112,7 +112,7 @@ pipeline {
     stage('Test env') {
       steps{
         sh '''
-          echo 'change on main'
+          echo 'change on dev'
           echo $MY_FIRST_ENV
           echo $MY_SECOND_ENV
         '''
